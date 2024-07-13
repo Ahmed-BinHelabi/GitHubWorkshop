@@ -1,3 +1,5 @@
+import java.util.NoSuchElementException;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class Calculator {
@@ -12,16 +14,43 @@ public class Calculator {
         double num2 = input.nextDouble();
         System.out.println("Result: "+ calculate(num1, num2, operator));
     }
-    
-    public static double calculate(double num1, double num2, String operator){
-        if (operator == "+" || operator == "plus"){
+
+    public static Object calculate(double num1, double num2, String operator){
+        if (Objects.equals(operator, "+") || Objects.equals(operator, "plus")){
             return sum(num1, num2);
-        } else if (operator == "-" || operator == "minus") {
+        } else if (Objects.equals(operator, "-") || Objects.equals(operator, "minus")) {
             return difference(num1, num2);
-        } else if (operator == "*" || operator == "multiply") {
+        } else if (Objects.equals(operator, "*") || Objects.equals(operator, "multiply")) {
             return multiplication(num1, num2);
-        } else {
+        } else if (Objects.equals(operator, "/") || Objects.equals(operator, "divide")) {
             return division(num1, num2);
         }
+        else {
+            System.out.println("Invalid inputs");
+            return null;
+        }
+
     }
+
+    //sum function
+    private static double sum(double num1, double num2) {
+        return num1+num2;
+    }
+
+    //difference function
+    private static double difference(double num1, double num2) {
+        return num1-num2;
+    }
+
+    //multiplication function
+    private static double multiplication(double num1, double num2) {
+        return num1*num2;
+    }
+
+    //division
+    private static double division(double num1, double num2) {
+        return num1/num2;
+    }
+
+
 }
